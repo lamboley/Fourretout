@@ -5,4 +5,7 @@
 ## RequiredDeps: Fourretout
 ## LoadOnDemand: 1
 
+Libraries\LibStub\LibStub.lua
+Libraries\Ace3\AceGUI-3.0\AceGUI-3.0.xml
+
 Core\Init.lua
