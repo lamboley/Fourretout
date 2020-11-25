@@ -1,7 +1,8 @@
-## Interface: 80300
+## Interface: 90002
 ## Title: |cffff7d00Fourretout_Options|r
 ## Author: Fourretout_Options
 ## Version: 0.0.1
-## Dependencies: Fourretout
+## RequiredDeps: Fourretout
+## LoadOnDemand: 1
 
 Core\Init.lua
