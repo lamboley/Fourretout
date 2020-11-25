@@ -1,0 +1,6 @@
+## Interface: 80300
+## Title: |cffff7d00Fourretout|r
+## Author: Fourretout
+## Version: 0.0.1
+
+Core\Init.lua
