@@ -7,4 +7,10 @@ exclude_files = {
 ignore = {
 }
 globals = {
+    "Fourretout",
+
+    "GetBuildInfo",
+    "CreateFrame",
+
+    "LibStub",
 }
