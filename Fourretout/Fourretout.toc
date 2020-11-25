@@ -1,6 +1,7 @@
-## Interface: 80300
+## Interface: 90002
 ## Title: |cffff7d00Fourretout|r
 ## Author: Fourretout
 ## Version: 0.0.1
 
 Core\Init.lua
+Core\Database.lua
