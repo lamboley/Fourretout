@@ -1,6 +1,3 @@
 # IntelliJ project files
 /.idea/
 /*.iml
-
-# Ignore Libraries directory
-/Fourretout_Options/Libraries/
