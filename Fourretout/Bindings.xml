@@ -1,0 +1,5 @@
+<Bindings>
+    <Binding name='Reload UI' runOnUp='false' category='BINDING_HEADER_FOURRETOUT'>
+        ReloadUI()
+    </Binding>
+</Bindings>
