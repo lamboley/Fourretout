@@ -19,6 +19,7 @@ Libraries\LibDualSpec-1.0\LibDualSpec-1.0.lua
 Init.lua
 
 Locales\enUS.lua
+Locales\frFR.lua
 
 Settings\Profile.lua
 Settings\Global.lua
