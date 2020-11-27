@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(select(2, ...))
+local E, L, P, G = unpack(select(2, ...))
 local M = E:GetModule('Miscellaneous')
 
 function M:Initialize()

@@ -1,15 +1,36 @@
-local E, L, V, P, G = unpack(select(2, ...))
+local E = unpack(select(2, ...))
 
-function E:Config_CloseWindow()
+function E:Config_IsOpen()
     local ACD = E.Libs.AceConfigDialog
-    if ACD then
-        ACD:Close('Fourretout')
+    local ConfigOpen = ACD and ACD.OpenFrames and ACD.OpenFrames[E.name]
+    return ConfigOpen and ConfigOpen.frame
+end
+
+function E:Config_GetToggleMode()
+    if E:Config_IsOpen() then
+        return 'Close'
+    else
+        return 'Open'
     end
 end
 
-function E:Config_OpenWindow()
+function E:ToggleOptionsUI()
+    if InCombatLockdown() then
+        return
+    end
+
+    if not IsAddOnLoaded('Fourretout_Options') then
+        local _, _, _, _, reason = GetAddOnInfo('Fourretout_Options')
+
+        if reason ~= 'MISSING' then
+            EnableAddOn('Fourretout_Options')
+            LoadAddOn('Fourretout_Options')
+        end
+    end
+
     local ACD = E.Libs.AceConfigDialog
     if ACD then
-        ACD:Open('Fourretout')
+        ACD[E:Config_GetToggleMode()](ACD, E.name)
     end
+
 end

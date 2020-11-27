@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(select(2, ...))
+local E, L, P, G = unpack(select(2, ...))
 local MSE = E:GetModule('MoutSummonEnhanced')
 
 function MSE:Initialize()

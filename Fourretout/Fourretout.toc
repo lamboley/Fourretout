@@ -2,7 +2,7 @@
 ## Title: |cffff7d00Fourretout|r
 ## Author: Rinbris
 ## Version: 0.0.1
-## SavedVariables: FourretoutDB, FourretoutPrivateDB
+## SavedVariables: FourretoutDB
 ## SavedVariablesPerCharacter: FourretoutCharacterDB
 
 TaintLess.xml
@@ -22,7 +22,6 @@ Locales\enUS.lua
 
 Settings\Profile.lua
 Settings\Global.lua
-Settings\Private.lua
 
 Core\Core.lua
 Core\Commands.lua
@@ -32,3 +31,6 @@ Locales\enUS.lua
 
 Modules\Miscellaneous\Miscellaneous.lua
 Modules\Miscellaneous\MoutSummonEnhanced.lua
+
+Modules\Blizzard\Blizzard.lua
+Modules\Blizzard\ObjectiveTrackerFrame.lua

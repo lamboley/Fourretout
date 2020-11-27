@@ -1,13 +1,13 @@
 --[[
     ~AddOn Engine~
     To load the AddOn engine add this to the top of your file:
-        local E, L, V, P, G = unpack(select(2, ...)); -- Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
+        local E, L, P, G = unpack(select(2, ...)); -- Import: Engine, Locales, ProfileDB, GlobalDB
 
     To load the AddOn engine inside another addon add this to the top of your file:
-        local E, L, V, P, G = unpack(Fourretout); -- Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
+        local E, L, P, G = unpack(Fourretout); -- Import: Engine, Locales, ProfileDB, GlobalDB
 ]]
 
--- GLOBALS: FourretoutDB, FourretoutPrivateDB, FourretoutCharacterDB
+-- GLOBALS: FourretoutDB, FourretoutCharacterDB
 
 _G.BINDING_HEADER_FOURRETOUT = GetAddOnMetadata(..., 'Title')
 
@@ -20,16 +20,16 @@ E.DF = { profile = {}, global = {} }
 E.privateVars = { profile = {} }
 E.Options = { type = 'group', args = {}, childGroups = 'Fourretout_HiddenTree'}
 
-Engine[1] = E                     -- E, Engine
-Engine[2] = {}                    -- L, Locales
-Engine[3] = E.privateVars.profile -- V, PrivateDB
-Engine[4] = E.DF.profile          -- P, ProfileDB
-Engine[5] = E.DF.global           -- G, GlobalDB
+Engine[1] = E            -- E, Engine
+Engine[2] = {}           -- L, Locales
+Engine[3] = E.DF.profile -- P, ProfileDB
+Engine[4] = E.DF.global  -- G, GlobalDB
 
 _G[addonName] = Engine
 
 E.Miscellaneous      = E:NewModule('Miscellaneous','AceEvent-3.0')
-E.MoutSummonEnhanced = E:NewModule('MoutSummonEnhanced','AceEvent-3.0')
+E.MoutSummonEnhanced = E:NewModule('MoutSummonEnhanced')
+E.Blizzard = E:NewModule('Blizzard','AceEvent-3.0')
 
 do
     E.Libs = {}
@@ -62,7 +62,6 @@ function E:OnInitialize()
 
     E.db = E:CopyTable({}, E.DF.profile)
     E.global = E:CopyTable({}, E.DF.global)
-    E.private = E:CopyTable({}, E.privateVars.profile)
 
     if FourretoutDB then
         if FourretoutDB.global then
@@ -74,25 +73,8 @@ function E:OnInitialize()
             E:CopyTable(E.db, FourretoutDB.profiles[key])
         end
     end
-
-    if FourretoutPrivateDB then
-        local key = FourretoutPrivateDB.profileKeys and FourretoutPrivateDB.profileKeys[E.myNameRealm]
-        if key and FourretoutPrivateDB.profiles and FourretoutPrivateDB.profiles[key] then
-            E:CopyTable(E.private, FourretoutPrivateDB.profiles[key])
-        end
-    end
-
-    E.loadedtime = GetTime()
 end
 
-function E:OnProfileReset()
-    E:StaticPopup_Show('RESET_PROFILE_PROMPT')
-end
-
-function E:ResetPrivateProfile()
-    ReloadUI()
-end
-
-function E:OnPrivateProfileReset()
-    E:StaticPopup_Show('RESET_PRIVATE_PROFILE_PROMPT')
+function E:ResetProfile()
+    --E:StaggeredUpdateAll()
 end

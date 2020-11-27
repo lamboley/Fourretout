@@ -1,6 +1,6 @@
 local Fourretout = select(2, ...)
 Fourretout[2] = Fourretout[1].Libs.ACL:GetLocale('Fourretout', GetLocale())
-local E, L, V, P, G = unpack(Fourretout)
+local E = unpack(Fourretout)
 
 E.noop = function() end
 E.title = format('|cff1784d1%s |r', 'Fourretout')
@@ -17,7 +17,6 @@ E.wowPatch, E.wowBuild = GetBuildInfo()
 E.wowBuild = tonumber(E.wowBuild)
 
 E.RegisteredModules = {}
-E.RegisteredInitialModules = {}
 
 function E:CopyTable(current, default)
     if type(current) ~= 'table' then
@@ -74,7 +73,6 @@ end
 function E:Initialize()
     wipe(E.db)
     wipe(E.global)
-    wipe(E.private)
 
     local playerGUID = UnitGUID('player')
     local _, serverID = strsplit('-', playerGUID)
@@ -84,26 +82,13 @@ function E:Initialize()
     E.data = E.Libs.AceDB:New('FourretoutDB', E.DF, true)
     E.data.RegisterCallback(E, 'OnProfileChanged', ReloadUI)
     E.data.RegisterCallback(E, 'OnProfileCopied', ReloadUI)
-    E.data.RegisterCallback(E, 'OnProfileReset', 'OnProfileReset')
-    E.charSettings = E.Libs.AceDB:New('FourretoutPrivateDB', E.privateVars)
-    E.charSettings.RegisterCallback(E, 'OnProfileChanged', ReloadUI)
-    E.charSettings.RegisterCallback(E, 'OnProfileCopied', ReloadUI)
-    E.charSettings.RegisterCallback(E, 'OnProfileReset', 'OnPrivateProfileReset')
-    E.private = E.charSettings.profile
+    E.data.RegisterCallback(E, 'OnProfileReset', 'ResetProfile')
     E.global = E.data.global
     E.db = E.data.profile
     E.Libs.DualSpec:EnhanceDatabase(E.data, 'Fourretout')
 
-    --E:DBConversions()
-    --E:UIScale()
-    --E:BuildPrefixValues()
-    --E:LoadAPI()
     E:LoadCommands()
     E:InitializeModules()
-    --E:RefreshModulesDB()
-    --E:LoadMovers()
-    --E:UpdateMedia()
-    --E:UpdateCooldownSettings('all')
-    --E:Tutorials()
+
     E.initialized = true
 end
