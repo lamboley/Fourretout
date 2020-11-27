@@ -15,14 +15,10 @@ function E:Config_GetToggleMode()
 end
 
 function E:ToggleOptionsUI()
-    if InCombatLockdown() then
-        return
-    end
+    if InCombatLockdown() then return end
 
     if not IsAddOnLoaded('Fourretout_Options') then
-        local _, _, _, _, reason = GetAddOnInfo('Fourretout_Options')
-
-        if reason ~= 'MISSING' then
+        if select(5, GetAddOnInfo('Fourretout_Options')) ~= 'MISSING' then
             EnableAddOn('Fourretout_Options')
             LoadAddOn('Fourretout_Options')
         end
