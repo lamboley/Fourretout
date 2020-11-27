@@ -25,6 +25,8 @@ Settings\Global.lua
 Settings\Private.lua
 
 Core\Core.lua
+Core\Commands.lua
+Core\Config.lua
 
 Locales\enUS.lua
 

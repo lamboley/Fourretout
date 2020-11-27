@@ -7,9 +7,6 @@
         local E, L, V, P, G = unpack(Fourretout); -- Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 ]]
 
-local _G = _G
-local type = type
-
 -- GLOBALS: FourretoutDB, FourretoutPrivateDB, FourretoutCharacterDB
 
 _G.BINDING_HEADER_FOURRETOUT = GetAddOnMetadata(..., 'Title')
@@ -19,8 +16,9 @@ local AceAddon, AceAddonMinor = _G.LibStub('AceAddon-3.0')
 local addonName, Engine = ...
 local E = AceAddon:NewAddon(addonName, 'AceConsole-3.0', 'AceEvent-3.0')
 
-E.DF          = { profile = {}, global = {} }
+E.DF = { profile = {}, global = {} }
 E.privateVars = { profile = {} }
+E.Options = { type = 'group', args = {}, childGroups = 'Fourretout_HiddenTree'}
 
 Engine[1] = E                     -- E, Engine
 Engine[2] = {}                    -- L, Locales
@@ -30,7 +28,7 @@ Engine[5] = E.DF.global           -- G, GlobalDB
 
 _G[addonName] = Engine
 
-E.Miscellaneous = E:NewModule('Miscellaneous','AceEvent-3.0')
+E.Miscellaneous      = E:NewModule('Miscellaneous','AceEvent-3.0')
 E.MoutSummonEnhanced = E:NewModule('MoutSummonEnhanced','AceEvent-3.0')
 
 do

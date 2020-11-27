@@ -2,15 +2,19 @@ local Fourretout = select(2, ...)
 Fourretout[2] = Fourretout[1].Libs.ACL:GetLocale('Fourretout', GetLocale())
 local E, L, V, P, G = unpack(Fourretout)
 
-local _G = _G
-local type, pairs = type, pairs
-local xpcall = xpcall
-
-local ReloadUI = ReloadUI
-
+E.noop = function() end
+E.title = format('|cff1784d1%s |r', 'Fourretout')
+E.version = GetAddOnMetadata('Fourretout', 'Version')
+E.myFaction, E.myLocalizedFaction = UnitFactionGroup('player')
+E.myLevel = UnitLevel('player')
+E.myLocalizedClass, E.myClass, E.myClassID = UnitClass('player')
+E.myLocalizedRace, E.myRace = UnitRace('player')
 E.myName = UnitName('player')
 E.myRealm = GetRealmName()
 E.myNameRealm = format('%s - %s', E.myName, E.myRealm)
+E.mySpec = GetSpecialization()
+E.wowPatch, E.wowBuild = GetBuildInfo()
+E.wowBuild = tonumber(E.wowBuild)
 
 E.RegisteredModules = {}
 E.RegisteredInitialModules = {}
@@ -94,7 +98,7 @@ function E:Initialize()
     --E:UIScale()
     --E:BuildPrefixValues()
     --E:LoadAPI()
-    --E:LoadCommands()
+    E:LoadCommands()
     E:InitializeModules()
     --E:RefreshModulesDB()
     --E:LoadMovers()
@@ -102,32 +106,4 @@ function E:Initialize()
     --E:UpdateCooldownSettings('all')
     --E:Tutorials()
     E.initialized = true
-
-    --if E.db.general.smoothingAmount and (E.db.general.smoothingAmount ~= 0.33) then
-    --    E:SetSmoothingAmount(E.db.general.smoothingAmount)
-    --end
-
-    --if not E.private.install_complete then
-    --    E:Install()
-    --end
-
-    --if E:HelloKittyFixCheck() then
-    --    E:HelloKittyFix()
-    --end
-
-    --if E.db.general.kittys then
-    --    E:CreateKittys()
-    --    E:Delay(5, E.Print, E, L["Type /hellokitty to revert to old settings."])
-    --end
-
-    if GetCVarBool('scriptProfile') then
-        E:StaticPopup_Show('SCRIPT_PROFILE')
-    end
-
-    --if E.db.general.loginmessage then
-    --    local msg = format(L["LOGIN_MSG"], E.version)
-    --    if Chat.Initialized then msg = select(2, Chat:FindURL('CHAT_MSG_DUMMY', msg)) end
-    --    print(msg)
-    --    print(L["LOGIN_MSG_HELP"])
-    --end
 end

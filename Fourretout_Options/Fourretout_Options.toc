@@ -3,8 +3,10 @@
 ## Author: Rinbris
 ## Version: 0.0.1
 ## RequiredDeps: Fourretout
-## LoadOnDemand: 1
 
+Libraries\Ace3\AceConfig-3.0\AceConfig-3.0.xml
+Libraries\Ace3\AceDBOptions-3.0\AceDBOptions-3.0.xml
 Libraries\Ace3\AceGUI-3.0\AceGUI-3.0.xml
 
-Core\Init.lua
+Core.lua
+General.lua
