@@ -5,7 +5,7 @@ L["Version"] = true
 L["Profile"] = true
 
 
-L["Zone"] = true
+L["Mount"] = true
 L['Select the ground et flying mount who will be summoned.'] = true
 L["Select ground mount"] = true
 L["Select flying mount"] = true
