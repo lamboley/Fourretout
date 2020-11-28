@@ -28,13 +28,18 @@ function E:GetMountID(spellID)
 end
 
 function E:GetZoneID()
-    print(C_Map.GetBestMapForUnit('player'))
+    return C_Map.GetBestMapForUnit('player')
+end
+
+function E:ShowZoneID()
+    local id = E:GetZoneID()
+    print(id .. ' - ' .. C_Map.GetMapInfo(id).name)
 end
 
 function E:LoadCommands()
     self:RegisterChatCommand('petguid', 'GetPetGUID')
     self:RegisterChatCommand('mountid', 'GetMountID')
-    self:RegisterChatCommand('zoneid', 'GetZoneID')
+    self:RegisterChatCommand('zoneid', 'ShowZoneID')
 
     self:RegisterChatCommand('frt', 'ToggleOptionsUI')
 end

@@ -27,7 +27,7 @@ Engine[4] = E.DF.global  -- G, GlobalDB
 
 _G[addonName] = Engine
 
-E.Miscellaneous      = E:NewModule('Miscellaneous','AceEvent-3.0')
+E.Miscellaneous = E:NewModule('Miscellaneous','AceEvent-3.0')
 E.MoutSummonEnhanced = E:NewModule('MoutSummonEnhanced')
 E.Blizzard = E:NewModule('Blizzard','AceEvent-3.0')
 
@@ -49,7 +49,6 @@ do
     E:AddLib('ACL', 'AceLocale-3.0')
     E:AddLib('DualSpec', 'LibDualSpec-1.0')
 end
-
 
 function E:OnEnable()
     E:Initialize()

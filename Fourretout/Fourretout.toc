@@ -25,6 +25,8 @@ Settings\Profile.lua
 Settings\Global.lua
 
 Core\Core.lua
+Core\Math.lua
+Core\String.lua
 Core\Commands.lua
 Core\Config.lua
 
