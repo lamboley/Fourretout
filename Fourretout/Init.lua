@@ -29,6 +29,7 @@ _G[addonName] = Engine
 
 E.Miscellaneous = E:NewModule('Miscellaneous','AceEvent-3.0')
 E.MoutSummonEnhanced = E:NewModule('MoutSummonEnhanced')
+E.EnhanceLoot = E:NewModule('EnhanceLoot','AceEvent-3.0')
 E.Blizzard = E:NewModule('Blizzard','AceEvent-3.0')
 
 do
@@ -75,5 +76,4 @@ function E:OnInitialize()
 end
 
 function E:ResetProfile()
-    --E:StaggeredUpdateAll()
 end
