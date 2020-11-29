@@ -2,9 +2,8 @@ local E = unpack(select(2, ...))
 local L = E.Libs.ACL:NewLocale("Fourretout", "enUS", true, true)
 
 L["Version"] = true
-L["Profile"] = true
 
-
+L['General'] = true
 L["Mount"] = true
 L['Select the ground et flying mount who will be summoned.'] = true
 L["Select ground mount"] = true
@@ -22,4 +21,6 @@ L['Remove current zoneID'] = true
 L['Remove the current zoneID from the forced ground mount list.'] = true
 L['List of zoneID where the ground mount will be forced to summon.'] = true
 
-L["Test"] = true
+L['Miscellaneous'] = true
+
+L["Profile"] = true

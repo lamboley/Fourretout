@@ -35,6 +35,7 @@ Locales\enUS.lua
 Modules\Miscellaneous\Miscellaneous.lua
 Modules\Miscellaneous\MoutSummonEnhanced.lua
 Modules\Miscellaneous\EnhanceLoot.lua
+Modules\Miscellaneous\AutoSell.lua
 
 Modules\Blizzard\Blizzard.lua
 Modules\Blizzard\ObjectiveTrackerFrame.lua

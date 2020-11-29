@@ -30,6 +30,7 @@ _G[addonName] = Engine
 E.Miscellaneous = E:NewModule('Miscellaneous','AceEvent-3.0')
 E.MoutSummonEnhanced = E:NewModule('MoutSummonEnhanced')
 E.EnhanceLoot = E:NewModule('EnhanceLoot','AceEvent-3.0')
+E.AutoSell = E:NewModule('AutoSell','AceEvent-3.0')
 E.Blizzard = E:NewModule('Blizzard','AceEvent-3.0')
 
 do

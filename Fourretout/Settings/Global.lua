@@ -3,7 +3,7 @@ local _, _, _, G = unpack(select(2, ...))
 G.general = {
     locale = GetLocale(),
     AceGUI = {
-        width = 960,
+        width = 935,
         height = 900
     },
 

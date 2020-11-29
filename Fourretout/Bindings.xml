@@ -2,4 +2,7 @@
     <Binding name='Reload UI' runOnUp='false' category='BINDING_HEADER_FOURRETOUT'>
         ReloadUI()
     </Binding>
+    <Binding name='Toggle Options UI' runOnUp='false' category='BINDING_HEADER_FOURRETOUT'>
+        Fourretout[1]:ToggleOptionsUI()
+    </Binding>
 </Bindings>
