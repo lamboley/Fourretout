@@ -76,5 +76,12 @@ function E:OnInitialize()
     end
 end
 
-function E:ResetProfile()
+function E:OnProfileChanged(event)
+    if event == 'OnProfileChanged' then E:UpdateDB() end
+end
+
+function E:OnProfileCopied()
+end
+
+function E:OnProfileReset()
 end

@@ -69,6 +69,20 @@ function E:RegisterModule(name, func)
     end
 end
 
+function E:DBConversions()
+    if E.db.dbConverted ~= E.version then
+        E.db.dbConverted = E.version
+
+        -- Will fix issues here when changing database oafter a new version
+    end
+end
+
+function E:UpdateDB()
+    E.db = E.data.profile
+    E.global = E.data.global
+
+    E:DBConversions()
+end
 
 function E:Initialize()
     wipe(E.db)
@@ -80,13 +94,14 @@ function E:Initialize()
     E.myGuid = playerGUID
 
     E.data = E.Libs.AceDB:New('FourretoutDB', E.DF, true)
-    E.data.RegisterCallback(E, 'OnProfileChanged', ReloadUI)
-    E.data.RegisterCallback(E, 'OnProfileCopied', ReloadUI)
-    E.data.RegisterCallback(E, 'OnProfileReset', 'ResetProfile')
-    E.global = E.data.global
+    E.data.RegisterCallback(E, 'OnProfileChanged', 'OnProfileChanged')
+    E.data.RegisterCallback(E, 'OnProfileCopied', 'OnProfileCopied')
+    E.data.RegisterCallback(E, 'OnProfileReset', 'OnProfileReset')
     E.db = E.data.profile
+    E.global = E.data.global
     E.Libs.DualSpec:EnhanceDatabase(E.data, 'Fourretout')
 
+    E:DBConversions()
     E:LoadCommands()
     E:InitializeModules()
 

@@ -1,27 +1,34 @@
 local E, L = unpack(select(2, ...))
 local MSE = E:GetModule('MoutSummonEnhanced')
 
+local tostring = tostring
+
+local CanExitVehicle, VehicleExit = CanExitVehicle, VehicleExit
+local C_MountJournalSummonByID = C_MountJournal.SummonByID
+local C_MapGetBestMapForUnit = C_Map.GetBestMapForUnit
+local IsMounted, Dismount = IsMounted, Dismount
+local IsSpellKnown, IsFlyableArea = IsSpellKnown, IsFlyableArea
+
+local mountHeirloom = {
+    ['Alliance'] = 679,
+    ['Horde'] = 678
+}
+
 function MSE:M()
     if CanExitVehicle() then
         VehicleExit()
-    elseif not C_MountJournal.GetNumMounts() or IsMounted() then
+    elseif IsMounted() then
         Dismount()
-    elseif E.db.general.mapCantFly[tostring(E:GetZoneID())] then
-        C_MountJournal.SummonByID(tonumber(E.db.mount.groundMount))
-    elseif IsSpellKnown(34090) ~= true and IsSpellKnown(34091) ~= true and IsSpellKnown(90265) ~= true then
-        if IsSpellKnown(33388) ~= true and IsSpellKnown(33391) ~= true then
-            if C_Map.GetBestMapForUnit('player') == 378 then
+    elseif IsSpellKnown(33388) ~= true and IsSpellKnown(33391) ~= true then -- Can't ground mount
+            if C_MapGetBestMapForUnit('player') == 378 then
                 print(L["You can't call heirloom mount since you haven't choosen a faction."])
             else
-                C_MountJournal.SummonByID(C['mount']['mountHeirloom'][DB.playerFaction])
+                C_MountJournalSummonByID(mountHeirloom[E.myFaction])
             end
-        else
-            C_MountJournal.SummonByID(tonumber(E.db.mount.groundMount))
-        end
-    elseif IsUsableSpell(93326) == true or IsFlyableArea() then
-        C_MountJournal.SummonByID(tonumber(E.db.mount.flyingMount))
+    elseif (IsSpellKnown(34090) ~= true and IsSpellKnown(90266) ~= true) or (E.db.general.mapCantFly and E.db.general.mapCantFly[tostring(E:GetZoneID())]) or not IsFlyableArea() then
+        C_MountJournalSummonByID(tonumber(E.db.mount.groundMount))
     else
-        C_MountJournal.SummonByID(tonumber(E.db.mount.groundMount))
+        C_MountJournalSummonByID(tonumber(E.db.mount.flyingMount))
     end
 end
 
