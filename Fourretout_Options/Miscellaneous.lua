@@ -89,7 +89,7 @@ E.Options.args.miscellaneous = {
                     get = function() return '' end,
                     set = function(_, value)
                         if value == '' or gsub(value, '%s+', '') == '' then return; end
-                        E.db.general.mapCantFly[value] = true
+                        E.db.general.dontFly[value] = true
                         UpdateZoneID()
                     end,
                 },
@@ -101,7 +101,7 @@ E.Options.args.miscellaneous = {
                     get = function() return '' end,
                     set = function(_, value)
                         if value == '' or gsub(value, '%s+', '') == '' then return; end
-                        E.db.general.mapCantFly[value] = nil
+                        E.db.general.dontFly[value] = nil
                         UpdateZoneID()
                     end,
                 },
@@ -122,7 +122,7 @@ E.Options.args.miscellaneous = {
                     name = L['Add current zoneID'],
                     desc = L['Add the current zoneID to the forced ground mount list.'],
                     func = function()
-                        E.db.general.mapCantFly[tostring(E:GetZoneID())] = true
+                        E.db.general.dontFly[tostring(E:GetZoneID())] = true
                         UpdateZoneID()
                     end
                 },
@@ -132,7 +132,7 @@ E.Options.args.miscellaneous = {
                     name = L['Remove current zoneID'],
                     desc = L['Remove the current zoneID from the forced ground mount list.'],
                     func = function()
-                        E.db.general.mapCantFly[tostring(E:GetZoneID())] = nil
+                        E.db.general.dontFly[tostring(E:GetZoneID())] = nil
                         UpdateZoneID()
                     end
                 }

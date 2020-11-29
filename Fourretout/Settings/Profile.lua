@@ -1,6 +1,6 @@
 local _, _, P = unpack(select(2, ...))
 
-P.general = { mapCantFly = {} }
+P.general = { dontFly = {} }
 
 P.mount = {
     groundMount = 136,
