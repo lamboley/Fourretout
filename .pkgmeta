@@ -1,0 +1,14 @@
+package-as: Fourretout
+
+manual-changelog:
+  filename: CHANGES.md
+  markup-type: markdown
+
+move-folders:
+  Fourretout/Fourretout: Fourretout
+  Fourretout/Fourretout_Options: Fourretout_Options
+
+ignore:
+  - Docs
+  - README.md
+  - .luacheckrc
