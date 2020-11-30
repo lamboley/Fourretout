@@ -3,9 +3,10 @@ Fourretout[2] = Fourretout[1].Libs.ACL:GetLocale('Fourretout', GetLocale())
 local E = unpack(Fourretout)
 
 local _G = _G
-local strjoin = strjoin
+local wipe, xpcall = wipe, xpcall
+local strjoin, unpack, format, ipairs, pairs = strjoin, unpack, format, ipairs, pairs
+local tonumber = tonumber
 
-E.noop = function() end
 E.title = format('|cff1784d1%s |r', 'Fourretout')
 E.version = GetAddOnMetadata('Fourretout', 'Version')
 E.myFaction, E.myLocalizedFaction = UnitFactionGroup('player')
@@ -26,13 +27,11 @@ function E.Print(...)
 end
 
 function E:CopyTable(current, default)
-    if type(current) ~= 'table' then
-        current = {}
-    end
+    if type(current) ~= 'table' then current = {} end
 
     if type(default) == 'table' then
         for option, value in pairs(default) do
-            current[option] = (type(value) == 'table' and E:CopyTable(current[option], value)) or value
+            current[option] = (type(value) == 'table' and self:CopyTable(current[option], value)) or value
         end
     end
 
@@ -40,7 +39,7 @@ function E:CopyTable(current, default)
 end
 
 do
-    function E:CallLoadFunc(func, ...)
+    function E.CallLoadFunc(func, ...)
         xpcall(func, errorhandler, ...)
     end
 end
@@ -48,69 +47,69 @@ end
 function E:CallLoadedModule(obj, silent, object, index)
     local name, func
     if type(obj) == 'table' then name, func = unpack(obj) else name = obj end
-    local module = name and E:GetModule(name, silent)
+    local module = name and self:GetModule(name, silent)
 
     if not module then return end
     if func and type(func) == 'string' then
-        E:CallLoadFunc(module[func], module)
+        self.CallLoadFunc(module[func], module)
     elseif func and type(func) == 'function' then
-        E:CallLoadFunc(func, module)
+        self.CallLoadFunc(func, module)
     elseif module.Initialize then
-        E:CallLoadFunc(module.Initialize, module)
+        self.CallLoadFunc(module.Initialize, module)
     end
 
     if object and index then object[index] = nil end
 end
 
 function E:InitializeModules()
-    for index, object in ipairs(E.RegisteredModules) do
-        E:CallLoadedModule(object, true, E.RegisteredModules, index)
+    for index, object in ipairs(self.RegisteredModules) do
+        self:CallLoadedModule(object, true, self.RegisteredModules, index)
     end
 end
 
 function E:RegisterModule(name, func)
-    if E.initialized then
-        E:CallLoadedModule((func and {name, func}) or name)
+    if self.initialized then
+        self:CallLoadedModule((func and {name, func}) or name)
     else
-        E.RegisteredModules[#E.RegisteredModules + 1] = (func and {name, func}) or name
+        self.RegisteredModules[#self.RegisteredModules + 1] = (func and {name, func}) or name
     end
 end
 
 function E:DBConversions()
-    if E.db.dbConverted ~= E.version then
-        E.db.dbConverted = E.version
+    if self.db.dbConverted ~= self.version then
+        self.db.dbConverted = self.version
 
         -- Will fix issues here when changing database oafter a new version
     end
 end
 
 function E:UpdateDB()
-    E.db = E.data.profile
-    E.global = E.data.global
+    self.db = self.data.profile
+    self.global = self.data.global
 
-    E:DBConversions()
+    self:DBConversions()
 end
 
 function E:Initialize()
-    wipe(E.db)
-    wipe(E.global)
+    wipe(self.db)
+    wipe(self.global)
 
     local playerGUID = UnitGUID('player')
     local _, serverID = strsplit('-', playerGUID)
-    E.serverID = tonumber(serverID)
-    E.myGuid = playerGUID
+    self.serverID = tonumber(serverID)
+    self.myGuid = playerGUID
 
-    E.data = E.Libs.AceDB:New('FourretoutDB', E.DF, true)
-    E.data.RegisterCallback(E, 'OnProfileChanged', 'OnProfileChanged')
-    E.data.RegisterCallback(E, 'OnProfileCopied', 'OnProfileCopied')
-    E.data.RegisterCallback(E, 'OnProfileReset', 'OnProfileReset')
-    E.db = E.data.profile
-    E.global = E.data.global
-    E.Libs.DualSpec:EnhanceDatabase(E.data, 'Fourretout')
+    self.data = self.Libs.AceDB:New('FourretoutDB', self.DF, true)
+    self.data.RegisterCallback(E, 'OnProfileChanged', 'OnProfileChanged')
+    self.data.RegisterCallback(E, 'OnProfileCopied', 'OnProfileCopied')
+    self.data.RegisterCallback(E, 'OnProfileReset', 'OnProfileReset')
+    self.db = self.data.profile
+    self.global = self.data.global
+    self.Libs.DualSpec:EnhanceDatabase(self.data, 'Fourretout')
 
-    E:DBConversions()
-    E:LoadCommands()
-    E:InitializeModules()
+    self:DBConversions()
+    self:LoadCommands()
+    self:InitializeModules()
 
-    E.initialized = true
+    self.initialized = true
 end

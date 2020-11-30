@@ -7,6 +7,9 @@
         local E, L, P, G = unpack(Fourretout); -- Import: Engine, Locales, ProfileDB, GlobalDB
 ]]
 
+local _G = _G
+local type= type
+
 -- GLOBALS: FourretoutDB, FourretoutCharacterDB
 
 _G.BINDING_HEADER_FOURRETOUT = GetAddOnMetadata(..., 'Title')
@@ -40,9 +43,9 @@ do
         if not name then return end
 
         if type(major) == 'table' and type(minor) == 'number' then
-            E.Libs[name], E.LibsMinor[name] = major, minor
+            self.Libs[name], self.LibsMinor[name] = major, minor
         else
-            E.Libs[name], E.LibsMinor[name] = _G.LibStub(major, minor)
+            self.Libs[name], self.LibsMinor[name] = _G.LibStub(major, minor)
         end
     end
 
@@ -53,7 +56,7 @@ do
 end
 
 function E:OnEnable()
-    E:Initialize()
+    self:Initialize()
 end
 
 function E:OnInitialize()
@@ -61,27 +64,27 @@ function E:OnInitialize()
         FourretoutCharacterDB = {}
     end
 
-    E.db = E:CopyTable({}, E.DF.profile)
-    E.global = E:CopyTable({}, E.DF.global)
+    self.db = self:CopyTable({}, self.DF.profile)
+    self.global = self:CopyTable({}, self.DF.global)
 
     if FourretoutDB then
         if FourretoutDB.global then
-            E:CopyTable(E.global, FourretoutDB.global)
+            self:CopyTable(self.global, FourretoutDB.global)
         end
 
-        local key = FourretoutDB.profileKeys and FourretoutDB.profileKeys[E.myNameRealm]
+        local key = FourretoutDB.profileKeys and FourretoutDB.profileKeys[self.myNameRealm]
         if key and FourretoutDB.profiles and FourretoutDB.profiles[key] then
-            E:CopyTable(E.db, FourretoutDB.profiles[key])
+            self:CopyTable(self.db, FourretoutDB.profiles[key])
         end
     end
 end
 
 function E:OnProfileChanged(event)
-    if event == 'OnProfileChanged' then E:UpdateDB() end
+    if event == 'OnProfileChanged' then self:UpdateDB() end
 end
 
-function E:OnProfileCopied()
+function E.OnProfileCopied()
 end
 
-function E:OnProfileReset()
+function E.OnProfileReset()
 end

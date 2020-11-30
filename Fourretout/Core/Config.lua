@@ -1,13 +1,17 @@
 local E = unpack(select(2, ...))
 
+local select = select
+
+local InCombatLockdown, IsAddOnLoaded, GetAddOnInfo, EnableAddOn, LoadAddOn = InCombatLockdown, IsAddOnLoaded, GetAddOnInfo, EnableAddOn, LoadAddOn
+
 function E:Config_IsOpen()
-    local ACD = E.Libs.AceConfigDialog
-    local ConfigOpen = ACD and ACD.OpenFrames and ACD.OpenFrames[E.name]
+    local ACD = self.Libs.AceConfigDialog
+    local ConfigOpen = ACD and ACD.OpenFrames and ACD.OpenFrames[self.name]
     return ConfigOpen and ConfigOpen.frame
 end
 
 function E:Config_GetToggleMode()
-    if E:Config_IsOpen() then
+    if self:Config_IsOpen() then
         return 'Close'
     else
         return 'Open'
@@ -24,9 +28,9 @@ function E:ToggleOptionsUI()
         end
     end
 
-    local ACD = E.Libs.AceConfigDialog
+    local ACD = self.Libs.AceConfigDialog
     if ACD then
-        ACD[E:Config_GetToggleMode()](ACD, E.name)
+        ACD[self:Config_GetToggleMode()](ACD, self.name)
     end
 
 end
