@@ -1,7 +1,9 @@
 local E = unpack(select(2, ...))
 local EL = E:GetModule('EnhanceLoot')
 
-function EL:LOOT_OPENED()
+local GetNumLootItems, LootSlot = GetNumLootItems, LootSlot
+
+function EL.LOOT_OPENED()
     for i = 1, GetNumLootItems() do LootSlot(i) end
 end
 

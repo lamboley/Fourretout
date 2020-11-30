@@ -12,20 +12,33 @@ local mountHeirloom = {
     ['Horde'] = 678
 }
 
-function MSE.M()
+function MSE:UpdateMountSpell()
+    self.apprentiRiding = IsSpellKnown(33388)
+    self.companionRiding = IsSpellKnown(33391)
+    self.expertRiding = IsSpellKnown(34090)
+    self.masterRiding = IsSpellKnown(90265)
+end
+
+function MSE:LEARNED_SPELL_IN_TAB()
+    self:UpdateMountSpell()
+end
+
+function MSE:M()
     if CanExitVehicle() then
         VehicleExit()
     elseif IsMounted() then
         Dismount()
     elseif not InCombatLockdown() then
-        if IsSpellKnown(33388) ~= true and IsSpellKnown(33391) ~= true then
+        if (not self.expertRiding and not self.masterRiding) or (E.db.general.dontFly and E.db.general.dontFly[tostring(E.GetZoneID())]) or not IsFlyableArea() then
+            if self.apprentiRiding or self.companionRiding or self.expertRiding or self.masterRiding then
+                C_MountJournalSummonByID(tonumber(E.db.mount.groundMount))
+            else
                 if C_MapGetBestMapForUnit('player') == 378 then
                     E.Print(L["You can't call heirloom mount since you haven't choosen a faction."])
                 else
                     C_MountJournalSummonByID(mountHeirloom[E.myFaction])
                 end
-        elseif (IsSpellKnown(34090) ~= true and IsSpellKnown(90266) ~= true) or (E.db.general.dontFly and E.db.general.dontFly[tostring(E.GetZoneID())]) or not IsFlyableArea() then
-            C_MountJournalSummonByID(tonumber(E.db.mount.groundMount))
+            end
         else
             C_MountJournalSummonByID(tonumber(E.db.mount.flyingMount))
         end
@@ -34,6 +47,9 @@ end
 
 function MSE:Initialize()
     self.Initialized = true
+
+    self:UpdateMountSpell()
+    self:RegisterEvent('LEARNED_SPELL_IN_TAB')
 end
 
 E:RegisterModule(MSE:GetName())

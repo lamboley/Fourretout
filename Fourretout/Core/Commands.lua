@@ -1,32 +1,36 @@
 local E = unpack(select(2, ...))
 
-local C_PetJournalGetSummonedPetGUID = C_PetJournal.GetSummonedPetGUID
+local pairs, strjoin, tonumber = pairs, strjoin, tonumber
 
-function E.GetPetGUID()
+local C_PetJournalGetSummonedPetGUID, C_MountJournalGetMountIDs, C_MountJournalGetMountInfoByID = C_PetJournal.GetSummonedPetGUID, C_MountJournal.GetMountIDs, C_MountJournal.GetMountInfoByID
+local C_MapGetMapInfo, C_MapGetBestMapForUnit = C_Map.GetMapInfo, C_Map.GetBestMapForUnit
+
+function E:GetPetGUID()
     local summonedPetGUID = C_PetJournalGetSummonedPetGUID()
     if summonedPetGUID then
-        print(summonedPetGUID)
+        self.Print(summonedPetGUID)
     end
 end
 
-function E.ChatCommand_GetMountID(spellID)
+function E:ChatCommand_GetMountID(spellID)
     if spellID == nil then return end
-    local mountIDs = C_MountJournal.GetMountIDs()
+    local mountIDs = C_MountJournalGetMountIDs
     for _, mountID in pairs(mountIDs) do
-        local mountName, mountSpellID = C_MountJournal.GetMountInfoByID(mountID)
+        local mountName, mountSpellID = C_MountJournalGetMountInfoByID(mountID)
+
         if mountSpellID == tonumber(spellID) then
-            print(mountName ..' '.. mountID)
+            self.Print(strjoin(' ', mountName, mountID))
         end
     end
 end
 
 function E.GetZoneID()
-    return C_Map.GetBestMapForUnit('player')
+    return C_MapGetBestMapForUnit('player')
 end
 
 function E:ChatCommand_ShowZoneID()
     local id = self.GetZoneID()
-    print(id .. ' - ' .. C_Map.GetMapInfo(id).name)
+    self.Print(strjoin(' - ', id, C_MapGetMapInfo(id).name))
 end
 
 function E:LoadCommands()

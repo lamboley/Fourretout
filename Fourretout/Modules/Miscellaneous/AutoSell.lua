@@ -3,7 +3,7 @@ local AS = E:GetModule('AutoSell')
 
 local GetContainerNumSlots, GetContainerItemID, GetItemInfo, UseContainerItem = GetContainerNumSlots, GetContainerItemID, GetItemInfo, UseContainerItem
 
-function AS:MERCHANT_SHOW()
+function AS.MERCHANT_SHOW()
     for sacID = 0, NUM_BAG_SLOTS do
         for slotID = 1, GetContainerNumSlots(sacID) do
             local itemID = GetContainerItemID(sacID, slotID)

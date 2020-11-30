@@ -1,7 +1,12 @@
-local E, L, P, G = unpack(select(2, ...))
+local E = unpack(select(2, ...))
 local B = E:GetModule('Blizzard')
 
-function B:PLAYER_ENTERING_WORLD()
+local select = select
+
+local IsInInstance = IsInInstance
+local ObjectiveTracker_Collapse, ObjectiveTracker_Expand = ObjectiveTracker_Collapse, ObjectiveTracker_Expand
+
+function B.PLAYER_ENTERING_WORLD()
     local instanceType = select(2, IsInInstance())
     if not instanceType then return end
 
