@@ -1,6 +1,6 @@
 local Engine = unpack(select(2, ...))
 
-function Engine:Description(order, name, width, fontSize)
+function Engine.Description(order, name, width, fontSize)
     return {
         type = 'description',
         order = order,
@@ -10,7 +10,7 @@ function Engine:Description(order, name, width, fontSize)
     }
 end
 
-function Engine:BigSpacer(order, fontSize)
+function Engine.BigSpacer(order, fontSize)
     return {
         type = 'description',
         order = order,
@@ -19,7 +19,7 @@ function Engine:BigSpacer(order, fontSize)
     }
 end
 
-function Engine:Spacer(order, fontSize)
+function Engine.Spacer(order, fontSize)
     return {
         type = 'description',
         order = order,

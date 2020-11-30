@@ -81,7 +81,7 @@ E.Options.args.miscellaneous = {
                         return filters
                     end,
                 },
-                spacer1 = Engine:Spacer(3),
+                spacer1 = Engine.Spacer(3),
                 descriptionAddRemoveManu = {
                     type = 'description',
                     order = 4,
