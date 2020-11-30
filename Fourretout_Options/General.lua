@@ -1,5 +1,5 @@
 local E = unpack(Fourretout)
-local Engine, L = unpack(select(2, ...))
+local _, L = unpack(select(2, ...))
 
 E.Options.args.general = {
     type = 'group',

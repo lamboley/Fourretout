@@ -17,6 +17,7 @@ globals = {
     "format",
     "errorhandler",
     "wipe",
+    "gsub",
 
     "UnitFactionGroup",
     "IsAddOnLoaded",

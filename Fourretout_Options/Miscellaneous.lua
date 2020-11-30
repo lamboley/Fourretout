@@ -1,6 +1,12 @@
 local E = unpack(Fourretout)
 local Engine, L = unpack(select(2, ...))
 
+local next, pairs, ipairs, gsub = next, pairs, ipairs, gsub
+local tostring = tostring
+
+local C_MapGetMapInfo = C_Map.GetMapInfo
+local C_MountJournalGetMountIDs, C_MountJournalGetMountInfoByID = C_MountJournal.GetMountIDs, C_MountJournal.GetMountInfoByID
+
 local function UpdateZoneID()
     E.Options.args.miscellaneous.args.mount.args.names = {
         type = 'group',
@@ -11,7 +17,7 @@ local function UpdateZoneID()
     if next(E.db.general.dontFly) then
         for name in pairs(E.db.general.dontFly) do
             E.Options.args.miscellaneous.args.mount.args.names.args[name] = {
-                name = name .. ' - ' .. C_Map.GetMapInfo(name).name,
+                name = name .. ' - ' .. C_MapGetMapInfo(name).name,
                 type = 'toggle',
                 order = -1,
                 get = function() return E.db.general.dontFly[name] end,
@@ -48,8 +54,8 @@ E.Options.args.miscellaneous = {
                     set = function(_, value) E.db.mount.groundMount = value end,
                     values = function()
                         local filters = {}
-                        for _, id in ipairs(C_MountJournal.GetMountIDs()) do
-                            local creatureName, _, iconTexture, _, isUsable, _, _, _, _, _, isCollected = C_MountJournal.GetMountInfoByID(id)
+                        for _, id in ipairs(C_MountJournalGetMountIDs()) do
+                            local creatureName, _, iconTexture, _, isUsable, _, _, _, _, _, isCollected = C_MountJournalGetMountInfoByID(id)
                             if isCollected and isUsable  then
                                 filters[id] = format('|T%s:14:14:::64:64:4:60:4:60|t %s', iconTexture, creatureName)
                             end
@@ -66,8 +72,8 @@ E.Options.args.miscellaneous = {
                     set = function(_, value) E.db.mount.flyingMount = value end,
                     values = function()
                         local filters = {}
-                        for _, id in ipairs(C_MountJournal.GetMountIDs()) do
-                            local creatureName, _, iconTexture, _, isUsable, _, _, _, _, _, isCollected = C_MountJournal.GetMountInfoByID(id)
+                        for _, id in ipairs(C_MountJournalGetMountIDs()) do
+                            local creatureName, _, iconTexture, _, isUsable, _, _, _, _, _, isCollected = C_MountJournalGetMountInfoByID(id)
                             if isCollected and isUsable then
                                 filters[id] = format('|T%s:14:14:::64:64:4:60:4:60|t %s', iconTexture, creatureName)
                             end
