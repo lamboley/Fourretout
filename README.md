@@ -1,5 +1,5 @@
 [![Build](https://github.com/lamboley/Fourretout/workflows/.github/workflows/main.yml/badge.svg)](https://github.com/lamboley/Fourretout/actions)
-[![Version](https://img.shields.io/github/v/tag/lamboley/Fourretout.svg?label=Version&style=popout)](https://www.wowace.com/projects/Fourretout/files)
+[![Version](https://img.shields.io/github/v/tag/lamboley/Fourretout.svg?label=Version&style=popout)](https://github.com/lamboley/Fourretout/releases)
 [![Tracker](https://img.shields.io/github/issues/lamboley/Fourretout.svg?label=Issues&style=popout)](https://github.com/lamboley/Fourretout/issues)
 
 # Fourretout
