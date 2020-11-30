@@ -1,6 +1,9 @@
 local _, _, P = unpack(select(2, ...))
 
-P.general = { dontFly = {} }
+P.general = {
+    dontFly = {
+    }
+}
 
 P.mount = {
     groundMount = 136,

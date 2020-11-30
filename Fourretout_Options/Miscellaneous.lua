@@ -8,14 +8,14 @@ local function UpdateZoneID()
         inline = true,
         args = {}
     }
-    if next(E.db.general.mapCantFly) then
-        for name in pairs(E.db.general.mapCantFly) do
+    if next(E.db.general.dontFly) then
+        for name in pairs(E.db.general.dontFly) do
             E.Options.args.miscellaneous.args.mount.args.names.args[name] = {
                 name = name .. ' - ' .. C_Map.GetMapInfo(name).name,
                 type = 'toggle',
                 order = -1,
-                get = function() return E.db.general.mapCantFly[name] end,
-                set = function(_, value) E.db.general.mapCantFly[name] = value end
+                get = function() return E.db.general.dontFly[name] end,
+                set = function(_, value) E.db.general.dontFly[name] = value end
             }
         end
     end

@@ -12,6 +12,8 @@ globals = {
 
     "GetBuildInfo",
     "CreateFrame",
+    "C_PetJournal",
+    "C_MountJournal",
 
     "LibStub",
 }

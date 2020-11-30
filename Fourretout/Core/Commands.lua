@@ -1,14 +1,5 @@
 local E = unpack(select(2, ...))
 
-do
-    local SlashCmdList = _G.SlashCmdList
-    if not SlashCmdList.RELOADUI then
-        _G.SLASH_RELOADUI1 = '/rl'
-        _G.SLASH_RELOADUI2 = '/reloadui'
-        SlashCmdList.RELOADUI = _G.ReloadUI
-    end
-end
-
 function E:GetPetGUID()
     local summonedPetGUID = C_PetJournal.GetSummonedPetGUID()
     if summonedPetGUID then

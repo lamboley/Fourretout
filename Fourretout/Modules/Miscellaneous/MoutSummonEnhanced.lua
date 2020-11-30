@@ -7,7 +7,10 @@ local CanExitVehicle, VehicleExit, InCombatLockdown = CanExitVehicle, VehicleExi
 local C_MountJournalSummonByID, C_MapGetBestMapForUnit = C_MountJournal.SummonByID, C_Map.GetBestMapForUnit
 local IsMounted, Dismount, IsSpellKnown, IsFlyableArea = IsMounted, Dismount, IsSpellKnown, IsFlyableArea
 
-local mountHeirloom = { ['Alliance'] = 679, ['Horde'] = 678 }
+local mountHeirloom = {
+    ['Alliance'] = 679,
+    ['Horde'] = 678
+}
 
 function MSE:M()
     if CanExitVehicle() then
