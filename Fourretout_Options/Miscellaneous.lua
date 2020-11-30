@@ -122,7 +122,7 @@ E.Options.args.miscellaneous = {
                     name = L['Add current zoneID'],
                     desc = L['Add the current zoneID to the forced ground mount list.'],
                     func = function()
-                        E.db.general.dontFly[tostring(E:GetZoneID())] = true
+                        E.db.general.dontFly[tostring(E.GetZoneID())] = true
                         UpdateZoneID()
                     end
                 },

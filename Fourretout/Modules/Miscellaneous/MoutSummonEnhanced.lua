@@ -20,7 +20,7 @@ function MSE:M()
     elseif not InCombatLockdown() then
         if IsSpellKnown(33388) ~= true and IsSpellKnown(33391) ~= true then
                 if C_MapGetBestMapForUnit('player') == 378 then
-                    print(L["You can't call heirloom mount since you haven't choosen a faction."])
+                    self.Print(L["You can't call heirloom mount since you haven't choosen a faction."])
                 else
                     C_MountJournalSummonByID(mountHeirloom[E.myFaction])
                 end

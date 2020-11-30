@@ -14,6 +14,14 @@ globals = {
     "CreateFrame",
     "C_PetJournal",
     "C_MountJournal",
+    "C_Map",
+    "CanExitVehicle",
+    "VehicleExit",
+    "InCombatLockdown",
+    "IsMounted",
+    "Dismount",
+    "IsSpellKnown",
+    "IsFlyableArea",
 
     "LibStub",
 }

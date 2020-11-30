@@ -2,6 +2,9 @@ local Fourretout = select(2, ...)
 Fourretout[2] = Fourretout[1].Libs.ACL:GetLocale('Fourretout', GetLocale())
 local E = unpack(Fourretout)
 
+local _G = _G
+local strjoin = strjoin
+
 E.noop = function() end
 E.title = format('|cff1784d1%s |r', 'Fourretout')
 E.version = GetAddOnMetadata('Fourretout', 'Version')
@@ -17,6 +20,10 @@ E.wowPatch, E.wowBuild = GetBuildInfo()
 E.wowBuild = tonumber(E.wowBuild)
 
 E.RegisteredModules = {}
+
+function E.Print(...)
+    _G.DEFAULT_CHAT_FRAME:AddMessage(strjoin('', '|cff00ff00', 'Fourretout:|r ', ...))
+end
 
 function E:CopyTable(current, default)
     if type(current) ~= 'table' then
