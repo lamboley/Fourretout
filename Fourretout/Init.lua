@@ -30,12 +30,18 @@ Engine[4] = E.DF.global  -- G, GlobalDB
 
 _G[addonName] = Engine
 
+E.Alerts = E:NewModule('Alerts','AceEvent-3.0')
+
+E.Blizzard = E:NewModule('Blizzard','AceEvent-3.0')
+
 E.Miscellaneous = E:NewModule('Miscellaneous','AceEvent-3.0')
 E.MoutSummonEnhanced = E:NewModule('MoutSummonEnhanced')
 E.EnhanceLoot = E:NewModule('EnhanceLoot','AceEvent-3.0')
 E.AutoSell = E:NewModule('AutoSell','AceEvent-3.0')
-
-E.Blizzard = E:NewModule('Blizzard','AceEvent-3.0')
+E.AutoRepair = E:NewModule('AutoRepair','AceEvent-3.0')
+E.RaidTarget = E:NewModule('RaidTarget','AceEvent-3.0')
+E.Bindings = E:NewModule('Bindings','AceEvent-3.0')
+E.PetLeash = E:NewModule('PetLeash','AceEvent-3.0')
 
 do
     E.Libs = {}

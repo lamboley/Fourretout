@@ -18,6 +18,7 @@ globals = {
     "errorhandler",
     "wipe",
     "gsub",
+    "hooksecurefunc",
 
     "UnitFactionGroup",
     "IsAddOnLoaded",
@@ -53,10 +54,17 @@ globals = {
     "GetLocale",
     "LootSlot",
     "IsInInstance",
+    "CombatLogGetCurrentEventInfo",
+    "IsInGroup",
+    "GetSpellLink",
     "ObjectiveTracker_Collapse",
     "ObjectiveTracker_Expand",
+    "IsStealthed",
 
     "NUM_BAG_SLOTS",
+
+    "GameTooltip",
+    "UIParent",
 
     "LootFrame",
     "ObjectiveTrackerFrame",

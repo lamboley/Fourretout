@@ -7,18 +7,20 @@ local wipe, xpcall = wipe, xpcall
 local strjoin, unpack, format, ipairs, pairs = strjoin, unpack, format, ipairs, pairs
 local tonumber = tonumber
 
-E.title = format('|cff1784d1%s |r', 'Fourretout')
-E.version = GetAddOnMetadata('Fourretout', 'Version')
-E.myFaction, E.myLocalizedFaction = UnitFactionGroup('player')
-E.myLevel = UnitLevel('player')
-E.myLocalizedClass, E.myClass, E.myClassID = UnitClass('player')
-E.myLocalizedRace, E.myRace = UnitRace('player')
-E.myName = UnitName('player')
-E.myRealm = GetRealmName()
-E.myNameRealm = format('%s - %s', E.myName, E.myRealm)
-E.mySpec = GetSpecialization()
-E.wowPatch, E.wowBuild = GetBuildInfo()
-E.wowBuild = tonumber(E.wowBuild)
+--E.title = format('|cff1784d1%s |r', 'Fourretout')
+--E.version = GetAddOnMetadata('Fourretout', 'Version')
+--E.myFaction, E.myLocalizedFaction = UnitFactionGroup('player')
+--E.myLevel = UnitLevel('player')
+--E.myLocalizedClass, E.myClass, E.myClassID = UnitClass('player')
+--E.myLocalizedRace, E.myRace = UnitRace('player')
+--E.myName = UnitName('player')
+--E.myRealm = GetRealmName()
+--E.myNameRealm = format('%s - %s', E.myName, E.myRealm)
+--E.mySpec = GetSpecialization()
+--E.mySpecId = GetInspectSpecialization('player')
+--E.mySpecInfo = GetSpecializationInfo(E.mySpecId)
+--E.wowPatch, E.wowBuild = GetBuildInfo()
+--E.wowBuild = tonumber(E.wowBuild)
 
 E.RegisteredModules = {}
 

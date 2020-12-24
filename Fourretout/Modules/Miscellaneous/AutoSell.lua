@@ -9,7 +9,7 @@ function AS.MERCHANT_SHOW()
             local itemID = GetContainerItemID(sacID, slotID)
             if itemID then
                 local _, _, itemRarity, _, _, _, _, _, _, _, _, itemClassID = GetItemInfo(itemID)
-                if itemRarity == 0 or (itemRarity == 1 and (itemClassID == 2 or itemClassID == 4)) then
+                if itemRarity == 0 or (itemRarity == 1 and itemClassID == 4) then
                     UseContainerItem(sacID, slotID)
                 end
             end

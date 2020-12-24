@@ -9,3 +9,8 @@ P.mount = {
     groundMount = 136,
     flyingMount = 974,
 }
+
+P.battlePet = {
+    summoned = 136,
+    flyingMount = 974,
+}

@@ -25,15 +25,26 @@ Settings\Profile.lua
 Settings\Global.lua
 
 Core\Core.lua
+Core\Constants.lua
 Core\Commands.lua
 Core\Config.lua
 
 Locales\enUS.lua
 
+Modules\Blizzard\Blizzard.lua
+Modules\Blizzard\ObjectiveTrackerFrame.lua
+Modules\Blizzard\Tooltip.lua
+
+Modules\Alerts\Alerts.lua
+Modules\Alerts\FoodMage.lua
+
 Modules\Miscellaneous\Miscellaneous.lua
 Modules\Miscellaneous\MoutSummonEnhanced.lua
 Modules\Miscellaneous\EnhanceLoot.lua
 Modules\Miscellaneous\AutoSell.lua
+Modules\Miscellaneous\AutoRepair.lua
+Modules\Miscellaneous\RaidTarget.lua
+Modules\Miscellaneous\Bindings.lua
+Modules\Miscellaneous\PetLeash.lua
 
-Modules\Blizzard\Blizzard.lua
-Modules\Blizzard\ObjectiveTrackerFrame.lua
+

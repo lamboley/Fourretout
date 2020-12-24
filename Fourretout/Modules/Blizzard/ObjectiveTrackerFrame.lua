@@ -26,6 +26,3 @@ function B:UpdateObjectiveTrackerFrame()
 
     self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
-
-
-

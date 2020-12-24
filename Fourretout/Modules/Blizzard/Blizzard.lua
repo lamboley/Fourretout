@@ -5,6 +5,7 @@ function B:Initialize()
     self.Initialized = true
 
     self:UpdateObjectiveTrackerFrame()
+    self:HandleDefaultTooltip()
 end
 
 E:RegisterModule(B:GetName())
